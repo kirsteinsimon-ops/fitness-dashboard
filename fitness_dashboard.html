@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fitness Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fafaf9; color: #0b0b0b; padding: 1.5rem; font-size: 14px; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 1.25rem; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; }
+  .stat { background: #f1f0eb; border-radius: 8px; padding: .75rem 1rem; }
+  .stat-label { font-size: 11px; color: #898781; margin-bottom: 2px; }
+  .stat-val { font-size: 22px; font-weight: 500; }
+  .stat-sub { font-size: 11px; color: #52514e; margin-top: 2px; }
+  .card { background: #fff; border: 0.5px solid rgba(11,11,11,.1); border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; }
+  .card-title { font-size: 13px; font-weight: 500; margin-bottom: 12px; }
+  .goal-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid rgba(11,11,11,.08); }
+  .goal-row:last-child { border-bottom: none; }
+  .goal-label { font-size: 13px; flex: 1; }
+  .prog-track { width: 110px; height: 5px; background: #f1f0eb; border-radius: 3px; overflow: hidden; flex-shrink: 0; }
+  .prog-fill { height: 100%; border-radius: 3px; }
+  .pill { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 20px; flex-shrink: 0; }
+  .chart-wrap { position: relative; width: 100%; }
+  .legend { display: flex; gap: 14px; margin-bottom: 8px; font-size: 12px; color: #52514e; flex-wrap: wrap; }
+  .legend span { display: flex; align-items: center; gap: 4px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: #898781; margin-bottom: 10px; }
+  @media (max-width: 600px) { .grid4 { grid-template-columns: 1fr 1fr; } .grid2 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="grid4">
+  <div class="stat"><div class="stat-label">Gym-Sessions</div><div class="stat-val">333</div><div class="stat-sub">seit Jan 2023</div></div>
+  <div class="stat"><div class="stat-label">Gewicht aktuell</div><div class="stat-val">74,3 kg</div><div class="stat-sub">Start: 65 kg (2017)</div></div>
+  <div class="stat"><div class="stat-label">VO2max aktuell</div><div class="stat-val">47,2</div><div class="stat-sub">Start: 39,4 (2020)</div></div>
+  <div class="stat"><div class="stat-label">Gym Ø / Monat</div><div class="stat-val">9,5</div><div class="stat-sub">letzte 6 Monate</div></div>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <div class="card-title">Ziele</div>
+    <div class="goal-row">
+      <span class="goal-label">Gewicht &lt; 75 kg</span>
+      <div class="prog-track"><div class="prog-fill" style="width:85%;background:#1baf7a"></div></div>
+      <span class="pill" style="background:#E1F5EE;color:#085041">74,3 kg</span>
+    </div>
+    <div class="goal-row">
+      <span class="goal-label">VO2max &gt; 50</span>
+      <div class="prog-track"><div class="prog-fill" style="width:94%;background:#2a78d6"></div></div>
+      <span class="pill" style="background:#E6F1FB;color:#0C447C">47,2 / 50</span>
+    </div>
+    <div class="goal-row">
+      <span class="goal-label">Gym 3x / Woche</span>
+      <div class="prog-track"><div class="prog-fill" style="width:79%;background:#eda100"></div></div>
+      <span class="pill" style="background:#FAEEDA;color:#633806">2,5x Ø</span>
+    </div>
+    <div class="goal-row">
+      <span class="goal-label">Brust e1RM 140 kg</span>
+      <div class="prog-track"><div class="prog-fill" style="width:91%;background:#4a3aa7"></div></div>
+      <span class="pill" style="background:#EEEDFE;color:#3C3489">127 kg</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Wo ich angefangen habe</div>
+    <div class="goal-row"><span class="goal-label">Gewicht</span><span style="color:#52514e">65 kg (Okt 2017)</span></div>
+    <div class="goal-row"><span class="goal-label">VO2max</span><span style="color:#52514e">39,4 (Okt 2020)</span></div>
+    <div class="goal-row"><span class="goal-label">Gym-Start</span><span style="color:#52514e">Jan 2023</span></div>
+    <div class="goal-row"><span class="goal-label">Brust e1RM</span><span style="color:#52514e">60 kg → 127 kg</span></div>
+    <div class="goal-row"><span class="goal-label">Beine e1RM</span><span style="color:#52514e">109 kg → 224 kg</span></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">Gewichtsverlauf</div>
+  <div class="chart-wrap" style="height:180px"><canvas id="weightChart" role="img" aria-label="Gewichtsverlauf 2020–2026">Gewichtsverlauf</canvas></div>
+</div>
+
+<div class="card">
+  <div class="card-title">VO2max</div>
+  <div class="legend">
+    <span><span class="legend-dot" style="background:#2a78d6"></span>VO2max</span>
+    <span><span class="legend-dot" style="background:#e3494855;width:20px;height:2px;border-radius:0"></span>Ziel 50</span>
+  </div>
+  <div class="chart-wrap" style="height:160px"><canvas id="vo2Chart" role="img" aria-label="VO2max Verlauf">VO2max</canvas></div>
+</div>
+
+<div class="card">
+  <div class="card-title">Gym-Sessions pro Monat</div>
+  <div class="chart-wrap" style="height:150px"><canvas id="gymChart" role="img" aria-label="Gym Frequenz">Gym</canvas></div>
+</div>
+
+<script>
+const WEIGHT = {"2020-06":70.0,"2020-07":71.3,"2020-09":73.0,"2020-10":73.0,"2021-03":75.0,"2022-01":72.8,"2022-07":78.5,"2023-01":73.5,"2023-02":73.5,"2023-03":75.0,"2023-04":75.8,"2023-06":77.2,"2023-07":78.2,"2023-08":79.0,"2023-10":79.0,"2023-11":78.2,"2023-12":80.0,"2024-01":80.2,"2024-02":79.4,"2024-03":77.0,"2024-04":75.4,"2024-05":74.3,"2024-06":73.9,"2024-07":75.3,"2024-08":75.5,"2024-09":75.6,"2024-10":77.3,"2024-11":78.1,"2024-12":79.0,"2025-01":80.1,"2025-02":80.6,"2025-03":77.9,"2025-04":74.9,"2025-05":71.2,"2025-06":72.8,"2025-07":73.9,"2025-08":74.8,"2025-09":76.6,"2025-10":78.4,"2025-11":79.0,"2025-12":79.9,"2026-01":80.7,"2026-02":79.2,"2026-03":80.5,"2026-04":77.9,"2026-05":76.2,"2026-06":74.4};
+const VO2 = {"2020-10":39.39,"2020-11":39.39,"2020-12":40.87,"2021-01":40.87,"2021-02":39.66,"2021-03":39.23,"2021-04":39.71,"2021-05":40.15,"2021-06":40.26,"2021-07":41.58,"2021-08":41.58,"2021-09":40.5,"2021-10":41.01,"2021-11":40.43,"2021-12":41.34,"2022-01":42.07,"2022-02":41.09,"2022-03":40.8,"2022-04":41.98,"2022-05":43.58,"2022-06":44.05,"2024-07":44.6,"2024-08":40.98,"2024-09":41.08,"2024-10":41.04,"2024-11":40.95,"2024-12":42.0,"2025-01":40.34,"2025-02":39.71,"2025-03":39.6,"2025-04":40.03,"2025-05":39.88,"2025-06":42.59,"2025-09":42.65,"2025-10":46.11,"2025-11":46.48,"2025-12":46.13,"2026-02":44.47,"2026-03":45.6,"2026-04":46.1,"2026-05":46.05,"2026-06":47.23};
+const GYM = {"2023-01":2,"2023-02":9,"2023-03":11,"2023-04":8,"2023-05":1,"2023-06":7,"2023-07":7,"2023-08":4,"2023-09":1,"2023-10":10,"2023-11":6,"2023-12":8,"2024-01":8,"2024-02":6,"2024-03":6,"2024-04":5,"2024-05":8,"2024-06":7,"2024-07":9,"2024-08":5,"2024-09":5,"2024-10":11,"2024-11":7,"2024-12":8,"2025-01":7,"2025-02":8,"2025-03":11,"2025-04":13,"2025-05":4,"2025-06":5,"2025-07":12,"2025-08":10,"2025-09":9,"2025-10":10,"2025-11":13,"2025-12":13,"2026-01":14,"2026-02":8,"2026-03":11,"2026-04":8,"2026-05":8,"2026-06":10};
+
+const grid = '#e8e7e0';
+const tick = '#898781';
+
+const baseOpts = (yMin, yMax, ySuffix) => ({
+  responsive: true, maintainAspectRatio: false,
+  plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } },
+  scales: {
+    x: { ticks: { color: tick, font: { size: 10 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 8 }, grid: { color: grid } },
+    y: { min: yMin, max: yMax, ticks: { color: tick, font: { size: 10 }, callback: v => v + (ySuffix||'') }, grid: { color: grid } }
+  }
+});
+
+const wM = Object.keys(WEIGHT).sort();
+new Chart(document.getElementById('weightChart'), {
+  type: 'line',
+  data: { labels: wM, datasets: [{ label: 'Gewicht (kg)', data: wM.map(m => WEIGHT[m] ?? null), borderColor: '#1baf7a', borderWidth: 2, backgroundColor: '#1baf7a12', pointRadius: 0, pointHoverRadius: 4, tension: 0.35, spanGaps: true, fill: true }] },
+  options: { ...baseOpts(65, 85, ' kg'), plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } } }
+});
+
+const vM = Object.keys(VO2).sort();
+new Chart(document.getElementById('vo2Chart'), {
+  type: 'line',
+  data: { labels: vM, datasets: [
+    { label: 'VO2max', data: vM.map(m => VO2[m] ?? null), borderColor: '#2a78d6', borderWidth: 2, backgroundColor: '#2a78d612', pointRadius: 0, pointHoverRadius: 4, tension: 0.35, spanGaps: true, fill: true },
+    { label: 'Ziel 50', data: vM.map(() => 50), borderColor: '#e34948', borderWidth: 1, borderDash: [4, 4], pointRadius: 0, backgroundColor: 'transparent' }
+  ]},
+  options: { ...baseOpts(36, 52, ''), plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } } }
+});
+
+const gM = Object.keys(GYM).sort();
+new Chart(document.getElementById('gymChart'), {
+  type: 'bar',
+  data: { labels: gM, datasets: [{ label: 'Sessions', data: gM.map(m => GYM[m]), backgroundColor: gM.map(m => GYM[m] >= 10 ? '#2a78d6' : '#2a78d650'), borderRadius: 3, borderSkipped: false }] },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { mode: 'index', intersect: false } }, scales: { x: { ticks: { color: tick, font: { size: 9 }, maxRotation: 0, autoSkip: true, maxTicksLimit: 10 }, grid: { display: false } }, y: { min: 0, max: 16, ticks: { color: tick, font: { size: 10 }, stepSize: 4 }, grid: { color: grid } } } }
+});
+</script>
+</body>
+</html>
