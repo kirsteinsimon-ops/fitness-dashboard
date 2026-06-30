@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Fitness Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fafaf9;color:#0b0b0b;padding:1.25rem;font-size:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1rem}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:1rem}
+.stat{background:#f1f0eb;border-radius:8px;padding:.65rem .9rem}
+.stat-label{font-size:11px;color:#898781;margin-bottom:1px}
+.stat-val{font-size:20px;font-weight:500;line-height:1.2}
+.stat-sub{font-size:11px;color:#52514e;margin-top:2px}
+.card{background:#fff;border:0.5px solid rgba(11,11,11,.1);border-radius:12px;padding:.9rem 1.1rem;margin-bottom:1rem}
+.card-title{font-size:11px;font-weight:500;color:#52514e;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.section-title{font-size:15px;font-weight:500;margin:1.25rem 0 .6rem;border-top:0.5px solid rgba(11,11,11,.08);padding-top:.75rem}
+.chart-wrap{position:relative;width:100%}
+.legend{display:flex;gap:12px;margin-bottom:6px;font-size:11px;color:#52514e;flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:4px}
+.ldot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.diät-banner{background:#f1f0eb;border-radius:10px;padding:.9rem 1.1rem;margin-bottom:1rem;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
+.diät-block{text-align:center;min-width:75px}
+.diät-label{font-size:10px;color:#898781;margin-bottom:2px}
+.goal-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:0.5px solid rgba(11,11,11,.06)}
+.goal-row:last-child{border-bottom:none}
+.goal-label{font-size:13px;flex:1}
+.prog-track{width:90px;height:4px;background:#f1f0eb;border-radius:2px;overflow:hidden;flex-shrink:0}
+.prog-fill{height:100%;border-radius:2px}
+.pill{font-size:11px;font-weight:500;padding:2px 7px;border-radius:20px;flex-shrink:0}
+.trend-badge{font-size:11px;font-weight:500;padding:2px 6px;border-radius:4px;flex-shrink:0}
+@media(max-width:600px){.grid2,.grid3,.grid4{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<!-- DIÄT BANNER -->
+<div class="diät-banner">
+  <div class="diät-block"><div class="diät-label">Diätstart</div><div style="font-size:13px;font-weight:500">22. Mrz 2026</div><div style="font-size:12px;color:#898781">82,3 kg</div></div>
+  <div style="font-size:18px;color:#c3c2b7">→</div>
+  <div class="diät-block"><div class="diät-label">Aktuell</div><div style="font-size:26px;font-weight:500">73,1 kg</div></div>
+  <div style="font-size:18px;color:#c3c2b7">→</div>
+  <div class="diät-block"><div class="diät-label">Ziel</div><div style="font-size:22px;font-weight:500;color:#1baf7a">71,0 kg</div><div style="font-size:10px;color:#898781">Ende Juli</div></div>
+  <div style="margin-left:auto;display:flex;gap:1.5rem;flex-wrap:wrap">
+    <div class="diät-block"><div class="diät-label">abgenommen</div><div style="font-size:20px;font-weight:500;color:#1baf7a">−9,2 kg</div><div style="font-size:10px;color:#898781">in 15 Wochen</div></div>
+    <div class="diät-block"><div class="diät-label">Ø-Rate</div><div style="font-size:20px;font-weight:500;color:#1baf7a">−0,61</div><div style="font-size:10px;color:#898781">kg / Woche</div></div>
+    <div class="diät-block"><div class="diät-label">bis Ziel</div><div style="font-size:20px;font-weight:500">~2 Wo</div><div style="font-size:10px;color:#898781">noch 1,1 kg</div></div>
+  </div>
+</div>
+
+<!-- GESAMTGESUNDHEITS-INDEX -->
+<div class="card" style="margin-bottom:1rem;background:linear-gradient(135deg,#f8fffe 0%,#f1f0eb 100%)">
+  <div class="card-title">Gesamtgesundheits-Index — Männer, ~25 Jahre</div>
+  <div style="display:flex;align-items:center;gap:1rem;margin-bottom:12px;flex-wrap:wrap">
+    <div style="flex:1">
+      <div style="font-size:11px;color:#898781;margin-bottom:4px">Geschätztes Gesamt-Perzentil</div>
+      <div style="font-size:32px;font-weight:500;color:#1baf7a">Top 25%</div>
+      <div style="font-size:11px;color:#52514e">basierend auf VO2max · Ruhe-HR · HRV · Cardio Recovery</div>
+    </div>
+    <div style="text-align:right">
+      <div style="display:flex;gap:6px;align-items:center;margin-bottom:4px">
+        <span style="font-size:10px;color:#898781;width:60px;text-align:right">schwach</span>
+        <div style="width:140px;height:8px;border-radius:4px;background:linear-gradient(to right,#e34948,#eda100,#1baf7a);position:relative">
+          <div style="position:absolute;top:-3px;left:75%;width:2px;height:14px;background:#0b0b0b;border-radius:1px"></div>
+        </div>
+        <span style="font-size:10px;color:#898781;width:60px">ausgezeichnet</span>
+      </div>
+      <div style="font-size:10px;color:#898781;text-align:center;padding-left:60px">Du: ~75. Perzentil</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+    <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid rgba(11,11,11,.08)">
+      <div style="font-size:10px;color:#898781">VO2max</div>
+      <div style="font-size:16px;font-weight:500;color:#2a78d6">47,9</div>
+      <div style="font-size:10px;color:#1baf7a;font-weight:500">Gut · ~70. Pz.</div>
+      <div style="font-size:9px;color:#898781;margin-top:2px">schlecht &lt;42 · gut &gt;46 · sehr gut &gt;52</div>
+    </div>
+    <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid rgba(11,11,11,.08)">
+      <div style="font-size:10px;color:#898781">Ruhe-HR</div>
+      <div style="font-size:16px;font-weight:500;color:#e34948">56 bpm</div>
+      <div style="font-size:10px;color:#1baf7a;font-weight:500">Sehr gut · ~80. Pz.</div>
+      <div style="font-size:9px;color:#898781;margin-top:2px">schlecht &gt;70 · gut &lt;62 · sehr gut &lt;56</div>
+    </div>
+    <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid rgba(11,11,11,.08)">
+      <div style="font-size:10px;color:#898781">HRV (SDNN)</div>
+      <div style="font-size:16px;font-weight:500;color:#4a3aa7">79,4 ms</div>
+      <div style="font-size:10px;color:#1baf7a;font-weight:500">Sehr gut · ~75. Pz.</div>
+      <div style="font-size:9px;color:#898781;margin-top:2px">schlecht &lt;50 · gut &gt;65 · sehr gut &gt;80</div>
+    </div>
+    <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid rgba(11,11,11,.08)">
+      <div style="font-size:10px;color:#898781">Cardio Recovery</div>
+      <div style="font-size:16px;font-weight:500;color:#1baf7a">34 bpm</div>
+      <div style="font-size:10px;color:#eda100;font-weight:500">Gut · ~60. Pz.</div>
+      <div style="font-size:9px;color:#898781;margin-top:2px">schwach &lt;12 · gut &gt;25 · sehr gut &gt;43</div>
+    </div>
+  </div>
+</div>
+
+<!-- ZIELE -->
+<div class="grid2">
+  <div class="card">
+    <div class="card-title">Gewichtsziele</div>
+    <div class="goal-row">
+      <span class="goal-label">Gewicht 71 kg</span>
+      <div class="prog-track"><div class="prog-fill" style="width:82%;background:#1baf7a"></div></div>
+      <span class="pill" style="background:#E1F5EE;color:#085041">73,1 kg</span>
+      <span class="trend-badge" style="background:#E1F5EE;color:#085041">▼ −1,2</span>
+    </div>
+    <div class="goal-row">
+      <span class="goal-label">Abnehmrate &gt; 0,5 kg/Wo</span>
+      <div class="prog-track"><div class="prog-fill" style="width:100%;background:#1baf7a"></div></div>
+      <span class="pill" style="background:#E1F5EE;color:#085041">0,61 kg/Wo</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Trainingsziele</div>
+    <div class="goal-row">
+      <span class="goal-label">VO2max &gt; 50</span>
+      <div class="prog-track"><div class="prog-fill" style="width:96%;background:#2a78d6"></div></div>
+      <span class="pill" style="background:#E6F1FB;color:#0C447C">47,9</span>
+      <span class="trend-badge" style="background:#E1F5EE;color:#085041">▲ +0,9</span>
+    </div>
+    <div class="goal-row">
+      <span class="goal-label">Gym 4x / Woche</span>
+      <div class="prog-track"><div class="prog-fill" style="width:63%;background:#eda100"></div></div>
+      <span class="pill" style="background:#FAEEDA;color:#633806">2,5x Ø</span>
+      <span class="trend-badge" style="background:#F1EFE8;color:#5F5E5A">→ ±0</span>
+    </div>
+    <div class="goal-row">
+      <span class="goal-label">Schritte &gt; 8.000 / Tag</span>
+      <div class="prog-track"><div class="prog-fill" style="width:79%;background:#eda100"></div></div>
+      <span class="pill" style="background:#FAEEDA;color:#633806">6.299 Ø</span>
+      <span class="trend-badge" style="background:#E1F5EE;color:#085041">▲ +63%</span>
+    </div>
+  </div>
+</div>
+
+<!-- KPIs -->
+<div class="grid4">
+  <div class="stat"><div class="stat-label">Gym-Sessions</div><div class="stat-val">333</div><div class="stat-sub">seit Jan 2023</div></div>
+  <div class="stat"><div class="stat-label">VO2max</div><div class="stat-val">47,9</div><div class="stat-sub">Ziel: &gt; 50</div></div>
+  <div class="stat"><div class="stat-label">Ruhe-HR</div><div class="stat-val">56</div><div class="stat-sub">bpm Ø Jun 2026</div></div>
+  <div class="stat"><div class="stat-label">Grundumsatz</div><div class="stat-val">1.889</div><div class="stat-sub">kcal/Tag Ø Jun 2026</div></div>
+</div>
+
+<!-- DIÄT CHART -->
+<div class="section-title">Diät — Gewichtsverlauf</div>
+<div class="card">
+  <div class="legend">
+    <span><span class="ldot" style="background:#1baf7a"></span>Gewicht</span>
+    <span><span class="ldot" style="background:#eda100"></span>Trend</span>
+    <span><span class="ldot" style="background:#2a78d6;opacity:.6"></span>Prognose</span>
+    <span><span class="ldot" style="background:#e34948;opacity:.5"></span>Ziel 72 kg</span>
+  </div>
+  <div class="chart-wrap" style="height:200px"><canvas id="dietChart"></canvas></div>
+</div>
+
+<!-- GEWICHT + VO2MAX -->
+<div class="card">
+  <div class="card-title">Gewicht seit 2017</div>
+  <div class="chart-wrap" style="height:160px"><canvas id="weightChart"></canvas></div>
+</div>
+
+<div class="card">
+  <div class="card-title">VO2max &nbsp;<span style="font-size:10px;color:#898781">Ziel: 50</span></div>
+  <div class="chart-wrap" style="height:150px"><canvas id="vo2Chart"></canvas></div>
+</div>
+
+<!-- NEUE CHARTS -->
+<div class="grid2">
+  <div class="card">
+    <div class="card-title">Grundumsatz (kcal/Tag Ø)</div>
+    <div class="chart-wrap" style="height:155px"><canvas id="basalChart"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Schritte pro Tag (Ø / Monat)</div>
+    <div class="chart-wrap" style="height:155px"><canvas id="stepsChart"></canvas></div>
+  </div>
+</div>
+
+<!-- GYM + RUHE-HR -->
+<div class="card">
+  <div class="card-title">Gym-Sessions pro Monat &nbsp;<span style="font-size:10px;color:#898781">orange = min 12x · grün = optimal 16x</span></div>
+  <div class="chart-wrap" style="height:150px"><canvas id="gymChart"></canvas></div>
+</div>
+
+<div class="card">
+  <div class="card-title">Ruhe-Herzfrequenz (bpm Ø / Monat)</div>
+  <div class="chart-wrap" style="height:140px"><canvas id="restingChart"></canvas></div>
+</div>
+
+<!-- KRAFT -->
+<div class="section-title">Kraftentwicklung (e1RM)</div>
+<div class="card">
+  <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px" id="strengthBtns"></div>
+  <div class="legend" id="strengthLegend"></div>
+  <div class="chart-wrap" style="height:210px"><canvas id="strengthChart"></canvas></div>
+</div>
+
+<script>
+const DIET={"2026-03-22":82.3,"2026-03-24":80.5,"2026-03-25":80.2,"2026-03-28":80.2,"2026-03-29":79.2,"2026-03-30":79.3,"2026-03-31":79.6,"2026-04-01":79.4,"2026-04-04":79.7,"2026-04-05":79.5,"2026-04-09":79.0,"2026-04-11":78.1,"2026-04-16":77.7,"2026-04-21":77.3,"2026-04-25":76.9,"2026-04-27":76.9,"2026-04-28":76.5,"2026-04-30":76.6,"2026-05-06":76.8,"2026-05-11":76.9,"2026-05-12":76.3,"2026-05-14":76.1,"2026-05-18":75.9,"2026-05-20":75.8,"2026-05-22":75.6,"2026-05-23":75.3,"2026-05-25":75.8,"2026-06-02":75.6,"2026-06-05":75.0,"2026-06-06":74.9,"2026-06-08":74.5,"2026-06-10":74.5,"2026-06-11":74.6,"2026-06-15":74.2,"2026-06-16":73.9,"2026-06-18":73.8,"2026-06-24":74.1,"2026-06-26":73.9,"2026-06-27":74.3,"2026-06-29":72.6,"2026-06-30":73.1};
+const WEIGHT={"2017-10":65.0,"2019-11":68.0,"2020-06":70.0,"2020-07":71.3,"2020-09":73.0,"2020-10":73.0,"2021-03":75.0,"2022-01":72.8,"2022-07":78.5,"2023-01":73.5,"2023-03":75.0,"2023-04":75.8,"2023-06":77.2,"2023-07":78.2,"2023-08":79.0,"2023-10":78.5,"2023-11":78.0,"2023-12":81.1,"2024-01":79.7,"2024-02":78.8,"2024-03":76.4,"2024-04":75.1,"2024-05":73.8,"2024-06":74.5,"2024-07":76.0,"2024-08":75.7,"2024-09":75.5,"2024-10":78.0,"2024-11":78.6,"2024-12":79.4,"2025-01":80.5,"2025-02":80.0,"2025-03":76.3,"2025-04":73.5,"2025-05":71.2,"2025-06":73.4,"2025-07":73.9,"2025-08":76.3,"2025-09":78.0,"2025-10":78.8,"2025-11":79.5,"2025-12":79.9,"2026-01":81.1,"2026-02":79.9,"2026-03":79.6,"2026-04":76.6,"2026-05":75.8,"2026-06":73.1};
+const VO2={"2020-10":39.4,"2020-11":39.4,"2020-12":40.9,"2021-01":40.9,"2021-03":39.2,"2021-05":40.1,"2021-07":41.6,"2021-09":40.5,"2021-11":40.4,"2022-01":42.1,"2022-04":42.0,"2022-05":43.6,"2022-06":44.0,"2024-07":44.6,"2024-09":41.1,"2024-12":42.0,"2025-03":39.6,"2025-06":42.6,"2025-09":42.6,"2025-10":46.1,"2025-11":46.5,"2025-12":46.1,"2026-02":44.5,"2026-03":45.6,"2026-04":46.1,"2026-05":46.0,"2026-06":47.9};
+const GYM={"2023-01":2,"2023-02":9,"2023-03":11,"2023-04":8,"2023-05":1,"2023-06":7,"2023-07":7,"2023-08":4,"2023-09":1,"2023-10":10,"2023-11":6,"2023-12":8,"2024-01":8,"2024-02":6,"2024-03":6,"2024-04":5,"2024-05":8,"2024-06":7,"2024-07":9,"2024-08":5,"2024-09":5,"2024-10":11,"2024-11":7,"2024-12":8,"2025-01":7,"2025-02":8,"2025-03":11,"2025-04":13,"2025-05":4,"2025-06":5,"2025-07":12,"2025-08":10,"2025-09":9,"2025-10":10,"2025-11":13,"2025-12":13,"2026-01":14,"2026-02":8,"2026-03":11,"2026-04":8,"2026-05":8,"2026-06":10};
+const RESTING={"2022-01":64.9,"2022-06":74.8,"2022-10":60.9,"2022-11":58.7,"2023-01":60.6,"2023-06":65.5,"2023-10":62.6,"2023-12":67.5,"2024-01":64.3,"2024-03":60.8,"2024-05":59.3,"2024-06":62.9,"2024-09":63.0,"2024-12":66.4,"2025-01":64.1,"2025-03":59.5,"2025-04":58.3,"2025-06":61.7,"2025-09":61.6,"2025-10":61.3,"2025-12":64.1,"2026-01":63.1,"2026-02":65.0,"2026-03":60.4,"2026-04":62.1,"2026-05":57.5,"2026-06":55.8};
+const BASAL={"2023-01":1679,"2023-02":1933,"2023-03":1864,"2023-04":1911,"2023-05":1887,"2023-06":1876,"2023-07":1922,"2023-08":1990,"2023-09":1945,"2023-10":1979,"2023-11":1923,"2023-12":1835,"2024-01":1985,"2024-02":1816,"2024-03":1851,"2024-04":1909,"2024-05":1788,"2024-06":1776,"2024-07":1875,"2024-08":1868,"2024-09":1896,"2024-10":1990,"2024-11":2004,"2024-12":2042,"2025-01":2024,"2025-02":2062,"2025-03":1839,"2025-04":1776,"2025-05":1532,"2025-06":1714,"2025-07":1541,"2025-08":1697,"2025-09":1901,"2025-10":1912,"2025-11":1912,"2025-12":1850,"2026-01":1820,"2026-02":1628,"2026-03":1967,"2026-04":1841,"2026-05":1667,"2026-06":1889};
+const STEPS={"2023-01":2872,"2023-02":7997,"2023-03":7887,"2023-04":8267,"2023-05":5598,"2023-06":4996,"2023-07":5101,"2023-08":3701,"2023-09":3387,"2023-10":6289,"2023-11":7997,"2023-12":5837,"2024-01":6500,"2024-02":3365,"2024-03":4526,"2024-04":5954,"2024-05":6926,"2024-06":6897,"2024-07":5300,"2024-08":4105,"2024-09":6155,"2024-10":5145,"2024-11":5032,"2024-12":4936,"2025-01":6076,"2025-02":5480,"2025-03":4953,"2025-04":5256,"2025-05":6626,"2025-06":7516,"2025-07":4533,"2025-08":4211,"2025-09":5732,"2025-10":4757,"2025-11":4830,"2025-12":4687,"2026-01":3032,"2026-02":3002,"2026-03":5114,"2026-04":4330,"2026-05":7036,"2026-06":6299};
+const STRENGTH={"Brust":{"2023-01":60,"2023-06":70,"2023-12":83,"2024-06":96,"2024-12":114,"2025-06":121,"2025-12":125,"2026-06":127},"Rücken":{"2023-01":62,"2023-06":72,"2023-12":82,"2024-06":93,"2024-12":100,"2025-06":104,"2025-12":107,"2026-06":107},"Schulter":{"2023-01":32,"2023-06":38,"2023-12":49,"2024-06":61,"2024-12":71,"2025-06":75,"2025-12":79,"2026-06":80},"Bizeps":{"2023-01":21,"2023-06":26,"2023-12":35,"2024-06":44,"2024-12":53,"2025-06":58,"2025-12":63,"2026-06":65},"Trizeps":{"2023-01":34,"2023-06":42,"2023-12":54,"2024-06":68,"2024-12":80,"2025-06":85,"2025-12":88,"2026-06":89},"Beine":{"2023-01":109,"2023-06":135,"2023-12":162,"2024-06":185,"2024-12":203,"2025-06":213,"2025-12":222,"2026-06":224}};
+const COLORS={"Brust":"#2a78d6","Rücken":"#1baf7a","Schulter":"#eda100","Bizeps":"#4a3aa7","Trizeps":"#e34948","Beine":"#eb6834"};
+const grid='#e8e7e0',tick='#898781';
+
+function linReg(ys){const n=ys.length,xs=ys.map((_,i)=>i),mx=xs.reduce((a,b)=>a+b)/n,my=ys.reduce((a,b)=>a+b)/n;const s=xs.reduce((s,x,i)=>s+(x-mx)*(ys[i]-my),0)/xs.reduce((s,x)=>s+(x-mx)**2,0);return xs.map(x=>+(my+s*(x-mx)).toFixed(2));}
+
+// Diät Chart
+const dKeys=Object.keys(DIET).sort();
+const dVals=dKeys.map(k=>DIET[k]);
+const trend=linReg(dVals);
+const lastDate=new Date(dKeys[dKeys.length-1]);
+const targetDate=new Date('2026-07-31');
+const daysLeft=Math.ceil((targetDate-lastDate)/86400000);
+const slope=(dVals[dVals.length-1]-dVals[0])/(dVals.length-1);
+const futureLabels=[],futureTrend=[];
+for(let i=1;i<=daysLeft;i++){const d=new Date(lastDate);d.setDate(d.getDate()+i);futureLabels.push(d.toISOString().slice(0,10));futureTrend.push(+(dVals[dVals.length-1]+slope*i).toFixed(2));}
+const allDietLabels=[...dKeys,...futureLabels];
+new Chart(document.getElementById('dietChart'),{type:'line',data:{labels:allDietLabels,datasets:[
+  {label:'Gewicht',data:[...dVals,...futureLabels.map(()=>null)],borderColor:'#1baf7a',borderWidth:2,backgroundColor:'#1baf7a10',pointRadius:2,tension:0.2,fill:true},
+  {label:'Trend',data:[...trend,...futureLabels.map(()=>null)],borderColor:'#eda100',borderWidth:1.5,borderDash:[5,3],pointRadius:0},
+  {label:'Prognose',data:[...dKeys.map(()=>null),...futureTrend],borderColor:'#2a78d6',borderWidth:1.5,borderDash:[3,3],pointRadius:0,backgroundColor:'#2a78d608',fill:true},
+  {label:'Ziel',data:allDietLabels.map(()=>71),borderColor:'#e34948',borderWidth:1,borderDash:[2,4],pointRadius:0}
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,filter:i=>i.raw!==null,callbacks:{label:i=>{if(i.datasetIndex===2&&i.raw<=71.2&&i.raw>=70.8)return ` 🎯 Ziel 71 kg erreicht!`;return i.raw?` ${i.dataset.label}: ${i.raw} kg`:null;}}}}},scales:{x:{ticks:{color:tick,font:{size:10},maxRotation:0,autoSkip:true,maxTicksLimit:10},grid:{color:grid}},y:{min:69,max:84,ticks:{color:tick,font:{size:10},callback:v=>v+' kg'},grid:{color:grid}}}}});
+
+// Gewicht
+const wM=Object.keys(WEIGHT).sort();
+new Chart(document.getElementById('weightChart'),{type:'line',data:{labels:wM,datasets:[{label:'Gewicht',data:wM.map(m=>WEIGHT[m]),borderColor:'#1baf7a',borderWidth:2,backgroundColor:'#1baf7a10',pointRadius:0,tension:0.35,fill:true,spanGaps:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:i=>` ${i.raw} kg`}}},scales:{x:{ticks:{color:tick,font:{size:10},maxRotation:0,autoSkip:true,maxTicksLimit:10},grid:{color:grid}},y:{min:62,max:85,ticks:{color:tick,font:{size:10},callback:v=>v+' kg'},grid:{color:grid}}}}});
+
+// VO2max
+const vM=Object.keys(VO2).sort();
+new Chart(document.getElementById('vo2Chart'),{type:'line',data:{labels:vM,datasets:[{label:'VO2max',data:vM.map(m=>VO2[m]),borderColor:'#2a78d6',borderWidth:2,backgroundColor:'#2a78d610',pointRadius:0,tension:0.35,fill:true,spanGaps:true},{label:'Ziel',data:vM.map(()=>50),borderColor:'#e34948',borderWidth:1,borderDash:[4,4],pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}},scales:{x:{ticks:{color:tick,font:{size:10},maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{color:grid}},y:{min:36,max:52,ticks:{color:tick,font:{size:10}},grid:{color:grid}}}}});
+
+// Grundumsatz
+const bM=Object.keys(BASAL).sort();
+new Chart(document.getElementById('basalChart'),{type:'line',data:{labels:bM,datasets:[{label:'kcal/Tag',data:bM.map(m=>BASAL[m]),borderColor:'#eb6834',borderWidth:2,backgroundColor:'#eb683410',pointRadius:0,tension:0.35,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:i=>` ${i.raw} kcal`}}},scales:{x:{ticks:{color:tick,font:{size:9},maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{color:grid}},y:{ticks:{color:tick,font:{size:10},callback:v=>v+' kcal'},grid:{color:grid}}}}});
+
+// Schritte
+const sM=Object.keys(STEPS).sort();
+new Chart(document.getElementById('stepsChart'),{type:'bar',data:{labels:sM,datasets:[{label:'Schritte',data:sM.map(m=>STEPS[m]),backgroundColor:sM.map(m=>STEPS[m]>=8000?'#1baf7a':STEPS[m]>=6000?'#2a78d6':STEPS[m]>=4000?'#2a78d670':'#2a78d635'),borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:i=>` ${i.raw.toLocaleString()} Schritte`}}},scales:{x:{ticks:{color:tick,font:{size:9},maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{display:false}},y:{ticks:{color:tick,font:{size:10},callback:v=>v>=1000?v/1000+'k':v},grid:{color:grid}}}}});
+
+// Gym
+const gM=Object.keys(GYM).sort();
+new Chart(document.getElementById('gymChart'),{type:'bar',data:{labels:gM,datasets:[{label:'Sessions',data:gM.map(m=>GYM[m]),backgroundColor:gM.map(m=>GYM[m]>=16?'#0C447C':GYM[m]>=12?'#2a78d6':GYM[m]>=8?'#2a78d680':'#2a78d635'),borderRadius:3,borderSkipped:false,order:2},{label:'Min 12',data:gM.map(()=>12),borderColor:'#eda100',borderWidth:1.5,borderDash:[4,3],pointRadius:0,type:'line',order:1},{label:'Optimal 16',data:gM.map(()=>16),borderColor:'#1baf7a',borderWidth:1.5,borderDash:[4,3],pointRadius:0,type:'line',order:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}},scales:{x:{ticks:{color:tick,font:{size:9},maxRotation:0,autoSkip:true,maxTicksLimit:10},grid:{display:false}},y:{min:0,max:17,ticks:{color:tick,font:{size:10},stepSize:4},grid:{color:grid}}}}});
+
+// Ruhe-HR
+const rM=Object.keys(RESTING).sort();
+new Chart(document.getElementById('restingChart'),{type:'line',data:{labels:rM,datasets:[{label:'Ruhe-HR',data:rM.map(m=>RESTING[m]),borderColor:'#e34948',borderWidth:2,backgroundColor:'#e3494810',pointRadius:0,tension:0.35,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:i=>` ${i.raw} bpm`}}},scales:{x:{ticks:{color:tick,font:{size:10},maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{color:grid}},y:{ticks:{color:tick,font:{size:10},callback:v=>v+' bpm'},grid:{color:grid}}}}});
+
+// Kraft
+const allMonths=Object.keys(STRENGTH['Brust']).sort();
+let sChart;
+const getDS=g=>{const gs=g==='all'?Object.keys(STRENGTH):[g];return gs.map(g=>({label:g,data:allMonths.map(m=>STRENGTH[g][m]??null),borderColor:COLORS[g],borderWidth:2,backgroundColor:COLORS[g]+'15',pointRadius:3,pointHoverRadius:5,tension:0.35,spanGaps:true}));};
+const btnC=document.getElementById('strengthBtns');
+['all',...Object.keys(STRENGTH)].forEach(g=>{const b=document.createElement('button');b.textContent=g==='all'?'Alle':g;b.style.cssText='font-size:11px;padding:2px 9px;border-radius:20px;border:0.5px solid #c3c2b7;background:#f1f0eb;cursor:pointer;color:#52514e;margin-bottom:3px';b.onclick=()=>{sChart.data.datasets=getDS(g);sChart.update();document.getElementById('strengthLegend').innerHTML=getDS(g).map(d=>`<span><span class="ldot" style="background:${COLORS[d.label]}"></span>${d.label}</span>`).join('');btnC.querySelectorAll('button').forEach(b2=>b2.style.fontWeight='400');b.style.fontWeight='500';};if(g==='all')b.style.fontWeight='500';btnC.appendChild(b);});
+sChart=new Chart(document.getElementById('strengthChart'),{type:'line',data:{labels:allMonths,datasets:getDS('all')},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:i=>` ${i.dataset.label}: ${i.raw} kg`}}},scales:{x:{ticks:{color:tick,font:{size:10},maxRotation:0},grid:{color:grid}},y:{ticks:{color:tick,font:{size:10},callback:v=>v+' kg'},grid:{color:grid}}}}});
+document.getElementById('strengthLegend').innerHTML=getDS('all').map(d=>`<span><span class="ldot" style="background:${COLORS[d.label]}"></span>${d.label}</span>`).join('');
+</script>
+</body>
+</html>
