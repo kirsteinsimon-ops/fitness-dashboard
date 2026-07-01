@@ -57,44 +57,80 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div style="display:flex;align-items:center;gap:1rem;margin-bottom:12px;flex-wrap:wrap">
     <div style="flex:1">
       <div style="font-size:11px;color:#898781;margin-bottom:4px">Geschätztes Gesamt-Perzentil</div>
-      <div style="font-size:32px;font-weight:500;color:#1baf7a">Top 25%</div>
-      <div style="font-size:11px;color:#52514e">basierend auf VO2max · Ruhe-HR · HRV · Cardio Recovery</div>
+      <div style="font-size:32px;font-weight:500;color:#1baf7a">Top 20%</div>
+      <div style="font-size:11px;color:#52514e">Cardio · Ruhe-HR · HRV · Cardio Recovery · Kraft</div>
     </div>
     <div style="text-align:right">
       <div style="display:flex;gap:6px;align-items:center;margin-bottom:4px">
         <span style="font-size:10px;color:#898781;width:60px;text-align:right">schwach</span>
         <div style="width:140px;height:8px;border-radius:4px;background:linear-gradient(to right,#e34948,#eda100,#1baf7a);position:relative">
-          <div style="position:absolute;top:-3px;left:75%;width:2px;height:14px;background:#0b0b0b;border-radius:1px"></div>
+          <div style="position:absolute;top:-3px;left:80%;width:2px;height:14px;background:#0b0b0b;border-radius:1px"></div>
         </div>
         <span style="font-size:10px;color:#898781;width:60px">ausgezeichnet</span>
       </div>
-      <div style="font-size:10px;color:#898781;text-align:center;padding-left:60px">Du: ~75. Perzentil</div>
+      <div style="font-size:10px;color:#898781;text-align:center;padding-left:60px">Du: ~80. Perzentil</div>
     </div>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px">
     <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid rgba(11,11,11,.08)">
       <div style="font-size:10px;color:#898781">VO2max</div>
       <div style="font-size:16px;font-weight:500;color:#2a78d6">47,9</div>
-      <div style="font-size:10px;color:#1baf7a;font-weight:500">Gut · ~70. Pz.</div>
-      <div style="font-size:9px;color:#898781;margin-top:2px">schlecht &lt;42 · gut &gt;46 · sehr gut &gt;52</div>
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div style="font-size:10px;color:#1baf7a;font-weight:500">Gut · ~70. Pz.</div>
+        <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#E1F5EE;color:#085041">▲ +1,5</div>
+      </div>
+      <div style="font-size:9px;color:#898781;margin-top:2px">&lt;42 schwach · &gt;46 gut · &gt;52 sehr gut</div>
     </div>
     <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid rgba(11,11,11,.08)">
       <div style="font-size:10px;color:#898781">Ruhe-HR</div>
       <div style="font-size:16px;font-weight:500;color:#e34948">56 bpm</div>
-      <div style="font-size:10px;color:#1baf7a;font-weight:500">Sehr gut · ~80. Pz.</div>
-      <div style="font-size:9px;color:#898781;margin-top:2px">schlecht &gt;70 · gut &lt;62 · sehr gut &lt;56</div>
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div style="font-size:10px;color:#1baf7a;font-weight:500">Sehr gut · ~80. Pz.</div>
+        <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#fcebeb;color:#A32D2D">▲ +2,1</div>
+      </div>
+      <div style="font-size:9px;color:#898781;margin-top:2px">&gt;70 schwach · &lt;62 gut · &lt;56 sehr gut</div>
     </div>
     <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid rgba(11,11,11,.08)">
       <div style="font-size:10px;color:#898781">HRV (SDNN)</div>
       <div style="font-size:16px;font-weight:500;color:#4a3aa7">79,4 ms</div>
-      <div style="font-size:10px;color:#1baf7a;font-weight:500">Sehr gut · ~75. Pz.</div>
-      <div style="font-size:9px;color:#898781;margin-top:2px">schlecht &lt;50 · gut &gt;65 · sehr gut &gt;80</div>
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div style="font-size:10px;color:#1baf7a;font-weight:500">Sehr gut · ~75. Pz.</div>
+        <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#E1F5EE;color:#085041">▲ +3,1</div>
+      </div>
+      <div style="font-size:9px;color:#898781;margin-top:2px">&lt;50 schwach · &gt;65 gut · &gt;80 sehr gut</div>
     </div>
     <div style="background:#fff;border-radius:8px;padding:8px 10px;border:0.5px solid rgba(11,11,11,.08)">
       <div style="font-size:10px;color:#898781">Cardio Recovery</div>
       <div style="font-size:16px;font-weight:500;color:#1baf7a">34 bpm</div>
-      <div style="font-size:10px;color:#eda100;font-weight:500">Gut · ~60. Pz.</div>
-      <div style="font-size:9px;color:#898781;margin-top:2px">schwach &lt;12 · gut &gt;25 · sehr gut &gt;43</div>
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div style="font-size:10px;color:#eda100;font-weight:500">Gut · ~60. Pz.</div>
+        <div style="font-size:10px;font-weight:500;padding:1px 5px;border-radius:3px;background:#F1EFE8;color:#5F5E5A">→ ±0</div>
+      </div>
+      <div style="font-size:9px;color:#898781;margin-top:2px">&lt;12 schwach · &gt;25 gut · &gt;43 sehr gut</div>
+    </div>
+  </div>
+  <!-- KRAFT VERGLEICH -->
+  <div style="border-top:0.5px solid rgba(11,11,11,.08);padding-top:8px">
+    <div style="font-size:10px;color:#898781;margin-bottom:6px">Kraftvergleich vs. Freizeitportler (73 kg Körpergewicht) — e1RM geschätzt</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+      <div style="background:#fff;border-radius:8px;padding:7px 9px;border:0.5px solid rgba(11,11,11,.08)">
+        <div style="font-size:10px;color:#898781">Brust (e1RM)</div>
+        <div style="font-size:15px;font-weight:500;color:#2a78d6">144 kg · 1,97x BW</div>
+        <div style="font-size:10px;color:#1baf7a;font-weight:500">Elite · Top ~5%</div>
+        <div style="font-size:9px;color:#898781">Advanced=1,25x · Elite=1,5x+</div>
+      </div>
+      <div style="background:#fff;border-radius:8px;padding:7px 9px;border:0.5px solid rgba(11,11,11,.08)">
+        <div style="font-size:10px;color:#898781">Schulter (e1RM)</div>
+        <div style="font-size:15px;font-weight:500;color:#eda100">102 kg · 1,40x BW</div>
+        <div style="font-size:10px;color:#1baf7a;font-weight:500">Advanced · Top ~20%</div>
+        <div style="font-size:9px;color:#898781">Intermediate=0,75x · Advanced=1,0x</div>
+      </div>
+      <div style="background:#fff;border-radius:8px;padding:7px 9px;border:0.5px solid rgba(11,11,11,.08)">
+        <div style="font-size:10px;color:#898781">Beine (Leg Press)</div>
+        <div style="font-size:15px;font-weight:500;color:#eb6834">252 kg · 3,45x BW</div>
+        <div style="font-size:10px;color:#1baf7a;font-weight:500">Sehr stark</div>
+        <div style="font-size:9px;color:#898781">Leg Press ≠ Squat (kein direkter Vergleich)</div>
+      </div>
     </div>
   </div>
 </div>
@@ -144,6 +180,62 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div class="stat"><div class="stat-label">VO2max</div><div class="stat-val">47,9</div><div class="stat-sub">Ziel: &gt; 50</div></div>
   <div class="stat"><div class="stat-label">Ruhe-HR</div><div class="stat-val">56</div><div class="stat-sub">bpm Ø Jun 2026</div></div>
   <div class="stat"><div class="stat-label">Grundumsatz</div><div class="stat-val">1.889</div><div class="stat-sub">kcal/Tag Ø Jun 2026</div></div>
+</div>
+
+<!-- TRAININGSPLAN VORWOCHE -->
+<div class="card" style="margin-bottom:1rem">
+  <div class="card-title">Trainingsplan — KW 26 (22.–28. Jun 2026) &nbsp;<span style="font-size:10px;color:#898781">jeden Montag aktualisieren</span></div>
+  <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">
+    <!-- Mo: Laufen statt Oberkörper = gelb -->
+    <div style="border-radius:8px;padding:8px 6px;text-align:center;background:#FAEEDA;border:0.5px solid #F0C060">
+      <div style="font-size:10px;font-weight:500;color:#898781;margin-bottom:3px">Mo</div>
+      <div style="font-size:10px;color:#52514e;margin-bottom:3px">Oberkörper</div>
+      <div style="font-size:10px;font-weight:500;color:#633806">Gelaufen</div>
+    </div>
+    <!-- Di: Laufen = grün -->
+    <div style="border-radius:8px;padding:8px 6px;text-align:center;background:#E1F5EE;border:0.5px solid #86D9B5">
+      <div style="font-size:10px;font-weight:500;color:#898781;margin-bottom:3px">Di</div>
+      <div style="font-size:10px;color:#52514e;margin-bottom:3px">Laufen</div>
+      <div style="font-size:10px;font-weight:500;color:#085041">✓ Gelaufen</div>
+    </div>
+    <!-- Mi: Beine = grün -->
+    <div style="border-radius:8px;padding:8px 6px;text-align:center;background:#E1F5EE;border:0.5px solid #86D9B5">
+      <div style="font-size:10px;font-weight:500;color:#898781;margin-bottom:3px">Mi</div>
+      <div style="font-size:10px;color:#52514e;margin-bottom:3px">Beine</div>
+      <div style="font-size:10px;font-weight:500;color:#085041">✓ Gym</div>
+    </div>
+    <!-- Do: Frei aber Gym = neutral/gut -->
+    <div style="border-radius:8px;padding:8px 6px;text-align:center;background:#E6F1FB;border:0.5px solid #B5D4F4">
+      <div style="font-size:10px;font-weight:500;color:#898781;margin-bottom:3px">Do</div>
+      <div style="font-size:10px;color:#52514e;margin-bottom:3px">Frei</div>
+      <div style="font-size:10px;font-weight:500;color:#0C447C">+ Gym</div>
+    </div>
+    <!-- Fr: Oberkörper = rot -->
+    <div style="border-radius:8px;padding:8px 6px;text-align:center;background:#fcebeb;border:0.5px solid #F5A0A0">
+      <div style="font-size:10px;font-weight:500;color:#898781;margin-bottom:3px">Fr</div>
+      <div style="font-size:10px;color:#52514e;margin-bottom:3px">Oberkörper</div>
+      <div style="font-size:10px;font-weight:500;color:#A32D2D">✗ nichts</div>
+    </div>
+    <!-- Sa: Laufen = rot -->
+    <div style="border-radius:8px;padding:8px 6px;text-align:center;background:#fcebeb;border:0.5px solid #F5A0A0">
+      <div style="font-size:10px;font-weight:500;color:#898781;margin-bottom:3px">Sa</div>
+      <div style="font-size:10px;color:#52514e;margin-bottom:3px">Laufen</div>
+      <div style="font-size:10px;font-weight:500;color:#A32D2D">✗ nichts</div>
+    </div>
+    <!-- So: Beine aber gelaufen = gelb -->
+    <div style="border-radius:8px;padding:8px 6px;text-align:center;background:#FAEEDA;border:0.5px solid #F0C060">
+      <div style="font-size:10px;font-weight:500;color:#898781;margin-bottom:3px">So</div>
+      <div style="font-size:10px;color:#52514e;margin-bottom:3px">Beine</div>
+      <div style="font-size:10px;font-weight:500;color:#633806">Gelaufen</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:12px;margin-top:8px;font-size:10px;color:#898781">
+    <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#1baf7a;margin-right:3px"></span>eingehalten</span>
+    <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#eda100;margin-right:3px"></span>anderer Sport</span>
+    <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#e34948;margin-right:3px"></span>verpasst</span>
+    <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#2a78d6;margin-right:3px"></span>Bonus</span>
+    <span style="margin-left:auto;font-weight:500">3/6 Pflichteinheiten ✓</span>
+  </div>
 </div>
 
 <!-- DIÄT CHART -->
@@ -208,62 +300,104 @@ const GYM={"2023-01":2,"2023-02":9,"2023-03":11,"2023-04":8,"2023-05":1,"2023-06
 const RESTING={"2022-01":64.9,"2022-06":74.8,"2022-10":60.9,"2022-11":58.7,"2023-01":60.6,"2023-06":65.5,"2023-10":62.6,"2023-12":67.5,"2024-01":64.3,"2024-03":60.8,"2024-05":59.3,"2024-06":62.9,"2024-09":63.0,"2024-12":66.4,"2025-01":64.1,"2025-03":59.5,"2025-04":58.3,"2025-06":61.7,"2025-09":61.6,"2025-10":61.3,"2025-12":64.1,"2026-01":63.1,"2026-02":65.0,"2026-03":60.4,"2026-04":62.1,"2026-05":57.5,"2026-06":55.8};
 const BASAL={"2023-01":1679,"2023-02":1933,"2023-03":1864,"2023-04":1911,"2023-05":1887,"2023-06":1876,"2023-07":1922,"2023-08":1990,"2023-09":1945,"2023-10":1979,"2023-11":1923,"2023-12":1835,"2024-01":1985,"2024-02":1816,"2024-03":1851,"2024-04":1909,"2024-05":1788,"2024-06":1776,"2024-07":1875,"2024-08":1868,"2024-09":1896,"2024-10":1990,"2024-11":2004,"2024-12":2042,"2025-01":2024,"2025-02":2062,"2025-03":1839,"2025-04":1776,"2025-05":1532,"2025-06":1714,"2025-07":1541,"2025-08":1697,"2025-09":1901,"2025-10":1912,"2025-11":1912,"2025-12":1850,"2026-01":1820,"2026-02":1628,"2026-03":1967,"2026-04":1841,"2026-05":1667,"2026-06":1889};
 const STEPS={"2023-01":2872,"2023-02":7997,"2023-03":7887,"2023-04":8267,"2023-05":5598,"2023-06":4996,"2023-07":5101,"2023-08":3701,"2023-09":3387,"2023-10":6289,"2023-11":7997,"2023-12":5837,"2024-01":6500,"2024-02":3365,"2024-03":4526,"2024-04":5954,"2024-05":6926,"2024-06":6897,"2024-07":5300,"2024-08":4105,"2024-09":6155,"2024-10":5145,"2024-11":5032,"2024-12":4936,"2025-01":6076,"2025-02":5480,"2025-03":4953,"2025-04":5256,"2025-05":6626,"2025-06":7516,"2025-07":4533,"2025-08":4211,"2025-09":5732,"2025-10":4757,"2025-11":4830,"2025-12":4687,"2026-01":3032,"2026-02":3002,"2026-03":5114,"2026-04":4330,"2026-05":7036,"2026-06":6299};
-const STRENGTH={"Brust":{"2023-01":60,"2023-06":70,"2023-12":83,"2024-06":96,"2024-12":114,"2025-06":121,"2025-12":125,"2026-06":127},"Rücken":{"2023-01":62,"2023-06":72,"2023-12":82,"2024-06":93,"2024-12":100,"2025-06":104,"2025-12":107,"2026-06":107},"Schulter":{"2023-01":32,"2023-06":38,"2023-12":49,"2024-06":61,"2024-12":71,"2025-06":75,"2025-12":79,"2026-06":80},"Bizeps":{"2023-01":21,"2023-06":26,"2023-12":35,"2024-06":44,"2024-12":53,"2025-06":58,"2025-12":63,"2026-06":65},"Trizeps":{"2023-01":34,"2023-06":42,"2023-12":54,"2024-06":68,"2024-12":80,"2025-06":85,"2025-12":88,"2026-06":89},"Beine":{"2023-01":109,"2023-06":135,"2023-12":162,"2024-06":185,"2024-12":203,"2025-06":213,"2025-12":222,"2026-06":224}};
-const COLORS={"Brust":"#2a78d6","Rücken":"#1baf7a","Schulter":"#eda100","Bizeps":"#4a3aa7","Trizeps":"#e34948","Beine":"#eb6834"};
-const grid='#e8e7e0',tick='#898781';
+const STRENGTH={"Brust":{"2023-01":60,"2023-06":70,"2023-12":83,"2024-06":96,"2024-12":114,"2025-06":121,"2025-12":125,"2026-06":127},"Ruecken":{"2023-01":62,"2023-06":72,"2023-12":82,"2024-06":93,"2024-12":100,"2025-06":104,"2025-12":107,"2026-06":107},"Schulter":{"2023-01":32,"2023-06":38,"2023-12":49,"2024-06":61,"2024-12":71,"2025-06":75,"2025-12":79,"2026-06":80},"Bizeps":{"2023-01":21,"2023-06":26,"2023-12":35,"2024-06":44,"2024-12":53,"2025-06":58,"2025-12":63,"2026-06":65},"Trizeps":{"2023-01":34,"2023-06":42,"2023-12":54,"2024-06":68,"2024-12":80,"2025-06":85,"2025-12":88,"2026-06":89},"Beine":{"2023-01":109,"2023-06":135,"2023-12":162,"2024-06":185,"2024-12":203,"2025-06":213,"2025-12":222,"2026-06":224}};
+const COLORS={"Brust":"#2a78d6","Ruecken":"#1baf7a","Schulter":"#eda100","Bizeps":"#4a3aa7","Trizeps":"#e34948","Beine":"#eb6834"};
+const LABELS={"Brust":"Brust","Ruecken":"R\u00fccken","Schulter":"Schulter","Bizeps":"Bizeps","Trizeps":"Trizeps","Beine":"Beine"};
+var grid='#e8e7e0',tick='#898781';
 
-function linReg(ys){const n=ys.length,xs=ys.map((_,i)=>i),mx=xs.reduce((a,b)=>a+b)/n,my=ys.reduce((a,b)=>a+b)/n;const s=xs.reduce((s,x,i)=>s+(x-mx)*(ys[i]-my),0)/xs.reduce((s,x)=>s+(x-mx)**2,0);return xs.map(x=>+(my+s*(x-mx)).toFixed(2));}
+function linReg(ys) {
+  var n=ys.length, xs=[], mx=0, my=0, s=0, sx2=0;
+  for(var i=0;i<n;i++) xs.push(i);
+  for(var i=0;i<n;i++) { mx+=xs[i]; my+=ys[i]; }
+  mx/=n; my/=n;
+  for(var i=0;i<n;i++) { s+=(xs[i]-mx)*(ys[i]-my); sx2+=(xs[i]-mx)*(xs[i]-mx); }
+  var slope=s/sx2;
+  return xs.map(function(x) { return parseFloat((my+slope*(x-mx)).toFixed(2)); });
+}
 
-// Diät Chart
-const dKeys=Object.keys(DIET).sort();
-const dVals=dKeys.map(k=>DIET[k]);
-const trend=linReg(dVals);
-const lastDate=new Date(dKeys[dKeys.length-1]);
-const targetDate=new Date('2026-07-31');
-const daysLeft=Math.ceil((targetDate-lastDate)/86400000);
-const slope=(dVals[dVals.length-1]-dVals[0])/(dVals.length-1);
-const futureLabels=[],futureTrend=[];
-for(let i=1;i<=daysLeft;i++){const d=new Date(lastDate);d.setDate(d.getDate()+i);futureLabels.push(d.toISOString().slice(0,10));futureTrend.push(+(dVals[dVals.length-1]+slope*i).toFixed(2));}
-const allDietLabels=[...dKeys,...futureLabels];
+// Diaet Chart
+var dKeys=Object.keys(DIET).sort();
+var dVals=dKeys.map(function(k){return DIET[k];});
+var trend=linReg(dVals);
+var lastDate=new Date(dKeys[dKeys.length-1]);
+var targetDate=new Date('2026-07-31');
+var daysLeft=Math.ceil((targetDate-lastDate)/86400000);
+var slope=(dVals[dVals.length-1]-dVals[0])/(dVals.length-1);
+var futureLabels=[], futureTrend=[];
+for(var i=1;i<=daysLeft;i++) {
+  var d=new Date(lastDate); d.setDate(d.getDate()+i);
+  futureLabels.push(d.toISOString().slice(0,10));
+  futureTrend.push(parseFloat((dVals[dVals.length-1]+slope*i).toFixed(2)));
+}
+var allDietLabels=dKeys.concat(futureLabels);
 new Chart(document.getElementById('dietChart'),{type:'line',data:{labels:allDietLabels,datasets:[
-  {label:'Gewicht',data:[...dVals,...futureLabels.map(()=>null)],borderColor:'#1baf7a',borderWidth:2,backgroundColor:'#1baf7a10',pointRadius:2,tension:0.2,fill:true},
-  {label:'Trend',data:[...trend,...futureLabels.map(()=>null)],borderColor:'#eda100',borderWidth:1.5,borderDash:[5,3],pointRadius:0},
-  {label:'Prognose',data:[...dKeys.map(()=>null),...futureTrend],borderColor:'#2a78d6',borderWidth:1.5,borderDash:[3,3],pointRadius:0,backgroundColor:'#2a78d608',fill:true},
-  {label:'Ziel',data:allDietLabels.map(()=>71),borderColor:'#e34948',borderWidth:1,borderDash:[2,4],pointRadius:0}
-]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,filter:i=>i.raw!==null,callbacks:{label:i=>{if(i.datasetIndex===2&&i.raw<=71.2&&i.raw>=70.8)return ` 🎯 Ziel 71 kg erreicht!`;return i.raw?` ${i.dataset.label}: ${i.raw} kg`:null;}}}}},scales:{x:{ticks:{color:tick,font:{size:10},maxRotation:0,autoSkip:true,maxTicksLimit:10},grid:{color:grid}},y:{min:69,max:84,ticks:{color:tick,font:{size:10},callback:v=>v+' kg'},grid:{color:grid}}}}});
+  {label:'Gewicht',data:dVals.concat(futureLabels.map(function(){return null;})),borderColor:'#1baf7a',borderWidth:2,backgroundColor:'#1baf7a10',pointRadius:2,tension:0.2,fill:true},
+  {label:'Trend',data:trend.concat(futureLabels.map(function(){return null;})),borderColor:'#eda100',borderWidth:1.5,borderDash:[5,3],pointRadius:0},
+  {label:'Prognose',data:dKeys.map(function(){return null;}).concat(futureTrend),borderColor:'#2a78d6',borderWidth:1.5,borderDash:[3,3],pointRadius:0,backgroundColor:'#2a78d608',fill:true},
+  {label:'Ziel 71kg',data:allDietLabels.map(function(){return 71;}),borderColor:'#e34948',borderWidth:1,borderDash:[2,4],pointRadius:0}
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}},scales:{x:{ticks:{color:tick,font:{size:10},maxRotation:0,autoSkip:true,maxTicksLimit:10},grid:{color:grid}},y:{min:69,max:84,ticks:{color:tick,font:{size:10},callback:function(v){return v+' kg';}},grid:{color:grid}}}}});
 
 // Gewicht
-const wM=Object.keys(WEIGHT).sort();
-new Chart(document.getElementById('weightChart'),{type:'line',data:{labels:wM,datasets:[{label:'Gewicht',data:wM.map(m=>WEIGHT[m]),borderColor:'#1baf7a',borderWidth:2,backgroundColor:'#1baf7a10',pointRadius:0,tension:0.35,fill:true,spanGaps:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:i=>` ${i.raw} kg`}}},scales:{x:{ticks:{color:tick,font:{size:10},maxRotation:0,autoSkip:true,maxTicksLimit:10},grid:{color:grid}},y:{min:62,max:85,ticks:{color:tick,font:{size:10},callback:v=>v+' kg'},grid:{color:grid}}}}});
+var wM=Object.keys(WEIGHT).sort();
+new Chart(document.getElementById('weightChart'),{type:'line',data:{labels:wM,datasets:[{label:'Gewicht',data:wM.map(function(m){return WEIGHT[m];}),borderColor:'#1baf7a',borderWidth:2,backgroundColor:'#1baf7a10',pointRadius:0,tension:0.35,fill:true,spanGaps:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(i){return ' '+i.raw+' kg';}}}},scales:{x:{ticks:{color:tick,font:{size:10},maxRotation:0,autoSkip:true,maxTicksLimit:10},grid:{color:grid}},y:{min:62,max:85,ticks:{color:tick,font:{size:10},callback:function(v){return v+' kg';}},grid:{color:grid}}}}});
 
 // VO2max
-const vM=Object.keys(VO2).sort();
-new Chart(document.getElementById('vo2Chart'),{type:'line',data:{labels:vM,datasets:[{label:'VO2max',data:vM.map(m=>VO2[m]),borderColor:'#2a78d6',borderWidth:2,backgroundColor:'#2a78d610',pointRadius:0,tension:0.35,fill:true,spanGaps:true},{label:'Ziel',data:vM.map(()=>50),borderColor:'#e34948',borderWidth:1,borderDash:[4,4],pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}},scales:{x:{ticks:{color:tick,font:{size:10},maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{color:grid}},y:{min:36,max:52,ticks:{color:tick,font:{size:10}},grid:{color:grid}}}}});
+var vM=Object.keys(VO2).sort();
+new Chart(document.getElementById('vo2Chart'),{type:'line',data:{labels:vM,datasets:[{label:'VO2max',data:vM.map(function(m){return VO2[m];}),borderColor:'#2a78d6',borderWidth:2,backgroundColor:'#2a78d610',pointRadius:0,tension:0.35,fill:true,spanGaps:true},{label:'Ziel',data:vM.map(function(){return 50;}),borderColor:'#e34948',borderWidth:1,borderDash:[4,4],pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}},scales:{x:{ticks:{color:tick,font:{size:10},maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{color:grid}},y:{min:36,max:52,ticks:{color:tick,font:{size:10}},grid:{color:grid}}}}});
 
 // Grundumsatz
-const bM=Object.keys(BASAL).sort();
-new Chart(document.getElementById('basalChart'),{type:'line',data:{labels:bM,datasets:[{label:'kcal/Tag',data:bM.map(m=>BASAL[m]),borderColor:'#eb6834',borderWidth:2,backgroundColor:'#eb683410',pointRadius:0,tension:0.35,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:i=>` ${i.raw} kcal`}}},scales:{x:{ticks:{color:tick,font:{size:9},maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{color:grid}},y:{ticks:{color:tick,font:{size:10},callback:v=>v+' kcal'},grid:{color:grid}}}}});
+var bM=Object.keys(BASAL).sort();
+new Chart(document.getElementById('basalChart'),{type:'line',data:{labels:bM,datasets:[{label:'kcal/Tag',data:bM.map(function(m){return BASAL[m];}),borderColor:'#eb6834',borderWidth:2,backgroundColor:'#eb683410',pointRadius:0,tension:0.35,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(i){return ' '+i.raw+' kcal';}}}},scales:{x:{ticks:{color:tick,font:{size:9},maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{color:grid}},y:{ticks:{color:tick,font:{size:10},callback:function(v){return v+' kcal';}},grid:{color:grid}}}}});
 
 // Schritte
-const sM=Object.keys(STEPS).sort();
-new Chart(document.getElementById('stepsChart'),{type:'bar',data:{labels:sM,datasets:[{label:'Schritte',data:sM.map(m=>STEPS[m]),backgroundColor:sM.map(m=>STEPS[m]>=8000?'#1baf7a':STEPS[m]>=6000?'#2a78d6':STEPS[m]>=4000?'#2a78d670':'#2a78d635'),borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:i=>` ${i.raw.toLocaleString()} Schritte`}}},scales:{x:{ticks:{color:tick,font:{size:9},maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{display:false}},y:{ticks:{color:tick,font:{size:10},callback:v=>v>=1000?v/1000+'k':v},grid:{color:grid}}}}});
+var sM=Object.keys(STEPS).sort();
+new Chart(document.getElementById('stepsChart'),{type:'bar',data:{labels:sM,datasets:[{label:'Schritte',data:sM.map(function(m){return STEPS[m];}),backgroundColor:sM.map(function(m){return STEPS[m]>=8000?'#1baf7a':STEPS[m]>=6000?'#2a78d6':STEPS[m]>=4000?'#2a78d670':'#2a78d635';}),borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(i){return ' '+i.raw.toLocaleString()+' Schritte';}}}},scales:{x:{ticks:{color:tick,font:{size:9},maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{display:false}},y:{ticks:{color:tick,font:{size:10},callback:function(v){return v>=1000?v/1000+'k':v;}},grid:{color:grid}}}}});
 
 // Gym
-const gM=Object.keys(GYM).sort();
-new Chart(document.getElementById('gymChart'),{type:'bar',data:{labels:gM,datasets:[{label:'Sessions',data:gM.map(m=>GYM[m]),backgroundColor:gM.map(m=>GYM[m]>=16?'#0C447C':GYM[m]>=12?'#2a78d6':GYM[m]>=8?'#2a78d680':'#2a78d635'),borderRadius:3,borderSkipped:false,order:2},{label:'Min 12',data:gM.map(()=>12),borderColor:'#eda100',borderWidth:1.5,borderDash:[4,3],pointRadius:0,type:'line',order:1},{label:'Optimal 16',data:gM.map(()=>16),borderColor:'#1baf7a',borderWidth:1.5,borderDash:[4,3],pointRadius:0,type:'line',order:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}},scales:{x:{ticks:{color:tick,font:{size:9},maxRotation:0,autoSkip:true,maxTicksLimit:10},grid:{display:false}},y:{min:0,max:17,ticks:{color:tick,font:{size:10},stepSize:4},grid:{color:grid}}}}});
+var gM=Object.keys(GYM).sort();
+new Chart(document.getElementById('gymChart'),{type:'bar',data:{labels:gM,datasets:[
+  {label:'Sessions',data:gM.map(function(m){return GYM[m];}),backgroundColor:gM.map(function(m){return GYM[m]>=16?'#0C447C':GYM[m]>=12?'#2a78d6':GYM[m]>=8?'#2a78d680':'#2a78d635';}),borderRadius:3,borderSkipped:false,order:2},
+  {label:'Min 12',data:gM.map(function(){return 12;}),borderColor:'#eda100',borderWidth:1.5,borderDash:[4,3],pointRadius:0,backgroundColor:'transparent',type:'line',order:1},
+  {label:'Optimal 16',data:gM.map(function(){return 16;}),borderColor:'#1baf7a',borderWidth:1.5,borderDash:[4,3],pointRadius:0,backgroundColor:'transparent',type:'line',order:1}
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}},scales:{x:{ticks:{color:tick,font:{size:9},maxRotation:0,autoSkip:true,maxTicksLimit:10},grid:{display:false}},y:{min:0,max:17,ticks:{color:tick,font:{size:10},stepSize:4},grid:{color:grid}}}}});
 
 // Ruhe-HR
-const rM=Object.keys(RESTING).sort();
-new Chart(document.getElementById('restingChart'),{type:'line',data:{labels:rM,datasets:[{label:'Ruhe-HR',data:rM.map(m=>RESTING[m]),borderColor:'#e34948',borderWidth:2,backgroundColor:'#e3494810',pointRadius:0,tension:0.35,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:i=>` ${i.raw} bpm`}}},scales:{x:{ticks:{color:tick,font:{size:10},maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{color:grid}},y:{ticks:{color:tick,font:{size:10},callback:v=>v+' bpm'},grid:{color:grid}}}}});
+var rM=Object.keys(RESTING).sort();
+new Chart(document.getElementById('restingChart'),{type:'line',data:{labels:rM,datasets:[{label:'Ruhe-HR',data:rM.map(function(m){return RESTING[m];}),borderColor:'#e34948',borderWidth:2,backgroundColor:'#e3494810',pointRadius:0,tension:0.35,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(i){return ' '+i.raw+' bpm';}}}},scales:{x:{ticks:{color:tick,font:{size:10},maxRotation:0,autoSkip:true,maxTicksLimit:8},grid:{color:grid}},y:{ticks:{color:tick,font:{size:10},callback:function(v){return v+' bpm';}},grid:{color:grid}}}}});
 
 // Kraft
-const allMonths=Object.keys(STRENGTH['Brust']).sort();
-let sChart;
-const getDS=g=>{const gs=g==='all'?Object.keys(STRENGTH):[g];return gs.map(g=>({label:g,data:allMonths.map(m=>STRENGTH[g][m]??null),borderColor:COLORS[g],borderWidth:2,backgroundColor:COLORS[g]+'15',pointRadius:3,pointHoverRadius:5,tension:0.35,spanGaps:true}));};
-const btnC=document.getElementById('strengthBtns');
-['all',...Object.keys(STRENGTH)].forEach(g=>{const b=document.createElement('button');b.textContent=g==='all'?'Alle':g;b.style.cssText='font-size:11px;padding:2px 9px;border-radius:20px;border:0.5px solid #c3c2b7;background:#f1f0eb;cursor:pointer;color:#52514e;margin-bottom:3px';b.onclick=()=>{sChart.data.datasets=getDS(g);sChart.update();document.getElementById('strengthLegend').innerHTML=getDS(g).map(d=>`<span><span class="ldot" style="background:${COLORS[d.label]}"></span>${d.label}</span>`).join('');btnC.querySelectorAll('button').forEach(b2=>b2.style.fontWeight='400');b.style.fontWeight='500';};if(g==='all')b.style.fontWeight='500';btnC.appendChild(b);});
-sChart=new Chart(document.getElementById('strengthChart'),{type:'line',data:{labels:allMonths,datasets:getDS('all')},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:i=>` ${i.dataset.label}: ${i.raw} kg`}}},scales:{x:{ticks:{color:tick,font:{size:10},maxRotation:0},grid:{color:grid}},y:{ticks:{color:tick,font:{size:10},callback:v=>v+' kg'},grid:{color:grid}}}}});
-document.getElementById('strengthLegend').innerHTML=getDS('all').map(d=>`<span><span class="ldot" style="background:${COLORS[d.label]}"></span>${d.label}</span>`).join('');
+var allMonths=Object.keys(STRENGTH['Brust']).sort();
+var sChart;
+function getDS(g) {
+  var gs=g==='all'?Object.keys(STRENGTH):[g];
+  return gs.map(function(gr) {
+    return {label:LABELS[gr],data:allMonths.map(function(m){return STRENGTH[gr][m]||null;}),borderColor:COLORS[gr],borderWidth:2,backgroundColor:COLORS[gr]+'15',pointRadius:3,pointHoverRadius:5,tension:0.35,spanGaps:true};
+  });
+}
+function updateLegend(g) {
+  var gs=g==='all'?Object.keys(STRENGTH):[g];
+  document.getElementById('strengthLegend').innerHTML=gs.map(function(gr){
+    return '<span><span class="ldot" style="background:'+COLORS[gr]+'"></span>'+LABELS[gr]+'</span>';
+  }).join('');
+}
+var btnC=document.getElementById('strengthBtns');
+var allGroups=['all'].concat(Object.keys(STRENGTH));
+allGroups.forEach(function(g) {
+  var b=document.createElement('button');
+  b.textContent=g==='all'?'Alle':LABELS[g];
+  b.style.cssText='font-size:11px;padding:2px 9px;border-radius:20px;border:0.5px solid #c3c2b7;background:#f1f0eb;cursor:pointer;color:#52514e;margin-bottom:3px';
+  b.onclick=function() {
+    sChart.data.datasets=getDS(g);
+    sChart.update();
+    updateLegend(g);
+    btnC.querySelectorAll('button').forEach(function(b2){b2.style.fontWeight='400';});
+    b.style.fontWeight='500';
+  };
+  if(g==='all') b.style.fontWeight='500';
+  btnC.appendChild(b);
+});
+sChart=new Chart(document.getElementById('strengthChart'),{type:'line',data:{labels:allMonths,datasets:getDS('all')},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,callbacks:{label:function(i){return ' '+i.dataset.label+': '+i.raw+' kg';}}}},scales:{x:{ticks:{color:tick,font:{size:10},maxRotation:0},grid:{color:grid}},y:{ticks:{color:tick,font:{size:10},callback:function(v){return v+' kg';}},grid:{color:grid}}}}});
+updateLegend('all');
 </script>
 </body>
 </html>
